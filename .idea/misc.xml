@@ -4,6 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19610507246376813" />
+        <entry key="mediaplayer/src/main/res/drawable/brown_outline.xml" value="0.2085" />
+        <entry key="mediaplayer/src/main/res/drawable/ic_pause.xml" value="0.2085" />
+        <entry key="mediaplayer/src/main/res/drawable/ic_play.xml" value="0.2085" />
+        <entry key="mediaplayer/src/main/res/drawable/playback_style.xml" value="0.2085" />
+        <entry key="mediaplayer/src/main/res/drawable/playback_thumb.xml" value="0.2085" />
+        <entry key="mediaplayer/src/main/res/drawable/seekbar_outline.xml" value="0.2085" />
+        <entry key="mediaplayer/src/main/res/drawable/seekbar_progress_volume.xml" value="0.2085" />
+        <entry key="mediaplayer/src/main/res/drawable/volume_style.xml" value="0.2085" />
+        <entry key="mediaplayer/src/main/res/layout/fragment_media_player.xml" value="0.25" />
       </map>
     </option>
   </component>
