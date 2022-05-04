@@ -184,13 +184,17 @@
                 android:layout_weight="1"
                 android:src="@drawable/icon_previous" />
 
-            <ImageView
+            <ToggleButton
                 android:id="@+id/playPauseButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="26dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_weight="1"
-                android:src="@drawable/ic_play" />
+                android:background="@drawable/play_pause"
+                android:textOn=""
+                android:textOff=""
+                android:elevation="5dp"
+                android:focusable="false"
+                android:focusableInTouchMode="false" />
 
             <ImageView
                 android:id="@+id/nextButton"

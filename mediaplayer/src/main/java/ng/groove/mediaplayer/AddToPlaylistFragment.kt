@@ -8,17 +8,17 @@ import android.view.ViewGroup
 
 /**
  * A simple [Fragment] subclass.
- * Use the [MediaPlayerFragment.newInstance] factory method to
+ * Use the [AddToPlaylistFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MediaPlayerFragment : Fragment() {
+class AddToPlaylistFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_media_player, container, false)
+        return inflater.inflate(R.layout.fragment_add_to_playlist, container, false)
     }
 
 }
