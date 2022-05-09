@@ -7,7 +7,10 @@
         <entry key="mediaplayer/src/main/res/drawable/brown_outline.xml" value="0.2085" />
         <entry key="mediaplayer/src/main/res/drawable/ic_pause.xml" value="0.2085" />
         <entry key="mediaplayer/src/main/res/drawable/ic_play.xml" value="0.2085" />
+        <entry key="mediaplayer/src/main/res/drawable/icon_favorite.xml" value="0.172" />
+        <entry key="mediaplayer/src/main/res/drawable/icon_favourite_solid.xml" value="0.172" />
         <entry key="mediaplayer/src/main/res/drawable/icon_pause.xml" value="0.2085" />
+        <entry key="mediaplayer/src/main/res/drawable/like_unlike.xml" value="0.172" />
         <entry key="mediaplayer/src/main/res/drawable/play_pause.xml" value="0.165" />
         <entry key="mediaplayer/src/main/res/drawable/playback_style.xml" value="0.2085" />
         <entry key="mediaplayer/src/main/res/drawable/playback_thumb.xml" value="0.2085" />
@@ -15,9 +18,20 @@
         <entry key="mediaplayer/src/main/res/drawable/seekbar_outline.xml" value="0.2085" />
         <entry key="mediaplayer/src/main/res/drawable/seekbar_progress_volume.xml" value="0.2085" />
         <entry key="mediaplayer/src/main/res/drawable/volume_style.xml" value="0.2085" />
+        <entry key="mediaplayer/src/main/res/layout/activity_main.xml" value="0.2453125" />
         <entry key="mediaplayer/src/main/res/layout/add_playlist_list_item.xml" value="0.5" />
-        <entry key="mediaplayer/src/main/res/layout/fragment_add_to_playlist.xml" value="0.375" />
-        <entry key="mediaplayer/src/main/res/layout/fragment_media_player.xml" value="0.1" />
+        <entry key="mediaplayer/src/main/res/layout/content_main.xml" value="0.1234375" />
+        <entry key="mediaplayer/src/main/res/layout/fragment_add_to_playlist.xml" value="0.25" />
+        <entry key="mediaplayer/src/main/res/layout/fragment_blank.xml" value="0.2453125" />
+        <entry key="mediaplayer/src/main/res/layout/fragment_first.xml" value="0.25" />
+        <entry key="mediaplayer/src/main/res/layout/fragment_item_list_dialog_list_dialog.xml" value="0.11197916666666667" />
+        <entry key="mediaplayer/src/main/res/layout/fragment_item_list_dialog_list_dialog_item.xml" value="0.2453125" />
+        <entry key="mediaplayer/src/main/res/layout/fragment_media_player.xml" value="0.25" />
+        <entry key="mediaplayer/src/main/res/layout/fragment_media_player2.xml" value="0.25677083333333334" />
+        <entry key="mediaplayer/src/main/res/layout/fragment_second.xml" value="0.25686977299880526" />
+        <entry key="mediaplayer1/src/main/res/layout/add_playlist_list_item.xml" value="0.2453125" />
+        <entry key="mediaplayer1/src/main/res/layout/fragment_add_to_playlist.xml" value="0.335" />
+        <entry key="mediaplayer1/src/main/res/layout/fragment_media_player.xml" value="0.2453125" />
       </map>
     </option>
   </component>
@@ -30,7 +44,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.5" />
+        <option name="scale" value="0.125" />
       </ProjectState>
     </option>
   </component>
