@@ -22,7 +22,7 @@ class PlaylistItemAdapter(context: Context,) :
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return 25
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
