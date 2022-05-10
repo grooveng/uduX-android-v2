@@ -1,10 +1,10 @@
 package ng.groove.mediaplayer
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ng.groove.mediaplayer.databinding.FragmentFirstBinding
 
@@ -32,11 +32,12 @@ class MediaPlayerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.playPauseButton.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        }
+
         binding.addButton.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_itemListDialogFragment)
+            (activity as MainActivity).addFragment(AddToPlaylistFragment(), null)
+        }
+        binding.moreButton.setOnClickListener {
+            (activity as MainActivity).addFragment(MediaPlayerMoreFragment(), null)
         }
     }
 
