@@ -1,17 +1,13 @@
 package ng.groove.mediaplayer
 
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ng.groove.mediaplayer.databinding.FragmentSecondBinding
 
@@ -43,20 +39,20 @@ class AddToPlaylistFragment : BottomSheetDialogFragment() {
         recyclerItems.adapter = recyclerAdapter
         binding.AddPlaylistMainLayout.background.alpha = 200
         binding.backButton.setOnClickListener {
-            (activity as MainActivity).removeFragment(
+            (activity as MediaPlayerMainActivity).removeFragment(
                 AddToPlaylistFragment(),
                 null
             )
         }
         binding.sortLinearLayout.setOnClickListener {
-            (activity as MainActivity).addFragment(SortDialogFragment(), null)
+            (activity as MediaPlayerMainActivity).addFragment(SortDialogFragment(), null)
         }
         requireActivity().onBackPressedDispatcher.addCallback(
             requireActivity(),
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     // in here you can do logic when backPress is clicked
-                    (activity as MainActivity).removeFragment(
+                    (activity as MediaPlayerMainActivity).removeFragment(
                         AddToPlaylistFragment(),
                         null
                     )

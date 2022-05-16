@@ -14,9 +14,6 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
-        <action
-            android:id="@+id/action_FirstFragment_to_itemListDialogFragment"
-            app:destination="@id/itemListDialogFragment" />
     </fragment>
     <dialog
         android:id="@+id/SecondFragment"
@@ -28,9 +25,4 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </dialog>
-    <fragment
-        android:id="@+id/itemListDialogFragment"
-        android:name="ng.groove.mediaplayer.ItemListDialogFragment"
-        android:label="fragment_item_list_dialog_list_dialog"
-        tools:layout="@layout/fragment_item_list_dialog_list_dialog" />
 </navigation>

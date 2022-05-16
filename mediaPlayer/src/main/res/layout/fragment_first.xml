@@ -144,7 +144,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutFavouriteActions" />
 
         <TextView
-            android:id="@+id/textViewStart"
+            android:id="@+id/textViewCurrentTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -156,7 +156,7 @@
             app:layout_constraintTop_toBottomOf="@+id/seekBarPlayback" />
 
         <TextView
-            android:id="@+id/textViewEnd"
+            android:id="@+id/textViewDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -173,7 +173,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/textViewStart">
+            app:layout_constraintTop_toBottomOf="@id/textViewCurrentTime">
 
             <ImageView
                 android:id="@+id/shuffleButton"
@@ -191,17 +191,13 @@
                 android:layout_weight="1"
                 android:src="@drawable/icon_previous" />
 
-            <ToggleButton
+            <ImageView
                 android:id="@+id/playPauseButton"
                 android:layout_width="26dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:background="@drawable/play_pause"
-                android:textOn=""
-                android:textOff=""
-                android:elevation="5dp"
-                android:focusable="false"
-                android:focusableInTouchMode="false" />
+                android:background="@drawable/icon_pause"
+                android:elevation="5dp" />
 
             <ImageView
                 android:id="@+id/nextButton"
