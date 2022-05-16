@@ -10,6 +10,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import ng.groove.mediaplayer.R
+import ng.groove.mediaplayer.adapters.SwipeSongAdapter
+import ng.groove.mediaplayer.exoplayer.MusicServiceConnection
 import javax.inject.Singleton
 
 @Module
@@ -23,9 +25,9 @@ object AppModule {
     ) = MusicServiceConnection(context)
 
 //    Singleton instance to be used for later feature of swiping songs to switch songs
-//    @Singleton
-//    @Provides
-//    fun provideSwipeSongAdapter() = SwipeSongAdapter()
+    @Singleton
+    @Provides
+    fun provideSwipeSongAdapter() = SwipeSongAdapter()
 
     @Singleton
     @Provides
