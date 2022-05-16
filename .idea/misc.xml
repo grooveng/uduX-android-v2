@@ -36,6 +36,7 @@
         <entry key="mediaplayer/src/main/res/layout/fragment_media_player_more.xml" value="0.125" />
         <entry key="mediaplayer/src/main/res/layout/fragment_second.xml" value="0.165" />
         <entry key="mediaplayer/src/main/res/layout/fragment_sort_dialog.xml" value="0.2453125" />
+        <entry key="mediaplayer/src/main/res/layout/mini_player.xml" value="0.2453125" />
         <entry key="mediaplayer1/src/main/res/layout/add_playlist_list_item.xml" value="0.2453125" />
         <entry key="mediaplayer1/src/main/res/layout/fragment_add_to_playlist.xml" value="0.335" />
         <entry key="mediaplayer1/src/main/res/layout/fragment_media_player.xml" value="0.2453125" />

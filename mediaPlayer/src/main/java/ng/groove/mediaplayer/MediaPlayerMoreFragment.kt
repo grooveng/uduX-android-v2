@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import ng.groove.mediaplayer.databinding.FragmentMediaPlayerMoreBinding
-import ng.groove.mediaplayer.databinding.FragmentSecondBinding
 
 
 class MediaPlayerMoreFragment : Fragment() {
@@ -32,13 +31,13 @@ class MediaPlayerMoreFragment : Fragment() {
 
         binding.mediaPlayerMoreLayout.background.alpha = 200
         binding.backButton.setOnClickListener {
-            (activity as MainActivity).removeFragment(
+            (activity as MediaPlayerMainActivity).removeFragment(
                 MediaPlayerMoreFragment(),
                 null
             )
         }
         binding.cancelTextView.setOnClickListener {
-            (activity as MainActivity).removeFragment(
+            (activity as MediaPlayerMainActivity).removeFragment(
                 MediaPlayerMoreFragment(),
                 null
             )
@@ -48,7 +47,7 @@ class MediaPlayerMoreFragment : Fragment() {
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     // in here you can do logic when backPress is clicked
-                    (activity as MainActivity).removeFragment(
+                    (activity as MediaPlayerMainActivity).removeFragment(
                         MediaPlayerMoreFragment(),
                         null
                     )
