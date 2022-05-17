@@ -14,25 +14,24 @@ import androidx.navigation.ui.navigateUp
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.RequestManager
 import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
 import ng.groove.mediaplayer.adapters.SwipeSongAdapter
 import ng.groove.mediaplayer.data.entities.Song
 import ng.groove.mediaplayer.databinding.ActivityMainBinding
 import ng.groove.mediaplayer.exoplayer.isPlaying
 import ng.groove.mediaplayer.exoplayer.toSong
 import ng.groove.mediaplayer.utils.Status
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
-@AndroidEntryPoint
+
 class MediaPlayerMainActivity : AppCompatActivity() {
 
     private val mainViewModel: MediaPlayerMainViewModel by viewModels()
 
-    @Inject
-    lateinit var swipeSongAdapter: SwipeSongAdapter
 
-    @Inject
-    lateinit var glide: RequestManager
+     val swipeSongAdapter: SwipeSongAdapter by inject()
+
+
+    //lateinit var glide: RequestManager
 
     private var curPlayingSong: Song? = null
 
@@ -76,8 +75,8 @@ class MediaPlayerMainActivity : AppCompatActivity() {
 //        }
 
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
+//        val navController = findNavController(R.id.nav_host_fragment_content_main)
+//        appBarConfiguration = AppBarConfiguration(navController.graph)
 
     }
 

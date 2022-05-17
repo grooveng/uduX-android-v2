@@ -13,28 +13,33 @@ import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.ext.mediasession.TimelineQueueNavigator
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import dagger.hilt.android.AndroidEntryPoint
+import com.google.android.exoplayer2.util.Util
 import kotlinx.coroutines.*
 import ng.groove.mediaplayer.Constants.MEDIA_ROOT_ID
 import ng.groove.mediaplayer.Constants.NETWORK_ERROR
 import ng.groove.mediaplayer.exoplayer.callbacks.MusicPlaybackPreparer
 import ng.groove.mediaplayer.exoplayer.callbacks.MusicPlayerEventListener
 import ng.groove.mediaplayer.exoplayer.callbacks.MusicPlayerNotificationListener
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
+import org.koin.core.context.GlobalContext.get
+
 
 private const val SERVICE_TAG = "MusicService"
 
-@AndroidEntryPoint
+
 class MusicService : MediaBrowserServiceCompat() {
 
-    @Inject
-    lateinit var dataSourceFactory: DefaultDataSourceFactory
 
-    @Inject
-    lateinit var exoPlayer: SimpleExoPlayer
+    val dataSourceFactory: DefaultDataSourceFactory = DefaultDataSourceFactory(applicationContext, Util.getUserAgent(applicationContext, "UdX"))
 
-    @Inject
-    lateinit var musicSource: MusicSource
+
+
+     val exoPlayer: SimpleExoPlayer = SimpleExoPlayer.Builder(applicationContext).build().apply {
+        setAudioAttributes(audioAttributes, true)
+        setHandleAudioBecomingNoisy(true)}
+
+
+     val musicSource: MusicSource by inject()
 
     private lateinit var musicNotificationManager: MusicNotificationManager
 

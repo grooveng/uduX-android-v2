@@ -1,6 +1,6 @@
 package ng.groove.mediaplayer
 
-import androidx.hilt.lifecycle.ViewModelInject
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +12,7 @@ import ng.groove.mediaplayer.exoplayer.MusicService
 import ng.groove.mediaplayer.exoplayer.MusicServiceConnection
 import ng.groove.mediaplayer.exoplayer.currentPlaybackPosition
 
-class SongViewModel @ViewModelInject constructor(
+class SongViewModel  constructor(
     musicServiceConnection: MusicServiceConnection
 ) : ViewModel() {
 

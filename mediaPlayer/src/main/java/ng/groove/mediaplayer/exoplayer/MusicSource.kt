@@ -14,9 +14,8 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ng.groove.mediaplayer.data.remote.MusicDatabase
-import javax.inject.Inject
 
-class MusicSource @Inject constructor(
+class MusicSource  constructor(
     private val musicDatabase: MusicDatabase
 ){
 

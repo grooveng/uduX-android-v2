@@ -1,9 +1,10 @@
 package ng.groove.mediaplayer
 
+import android.app.Application
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.MediaMetadataCompat.METADATA_KEY_MEDIA_ID
 import android.util.Log
-import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,12 +15,16 @@ import ng.groove.mediaplayer.exoplayer.isPlayEnabled
 import ng.groove.mediaplayer.exoplayer.isPlaying
 import ng.groove.mediaplayer.exoplayer.isPrepared
 import ng.groove.mediaplayer.utils.Resource
+import org.koin.java.KoinJavaComponent.inject
 
-class MediaPlayerMainViewModel @ViewModelInject public constructor(
-    private val musicServiceConnection: MusicServiceConnection
-) : ViewModel() {
+class MediaPlayerMainViewModel  constructor(
+    application: Application
+) : AndroidViewModel(application) {
+
+    private val musicServiceConnection: MusicServiceConnection = MusicServiceConnection(application)
     private val _mediaItems = MutableLiveData<Resource<List<Song>>>()
     val mediaItems: LiveData<Resource<List<Song>>> = _mediaItems
+
 
     val isConnected = musicServiceConnection.isConnected
     val networkError = musicServiceConnection.networkError

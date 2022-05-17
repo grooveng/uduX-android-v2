@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'dagger.hilt.android.plugin'
+//    id 'dagger.hilt.android.plugin'
 //    id 'com.google.gms.google-services'
 }
 
@@ -84,10 +84,26 @@ dependencies {
     implementation "androidx.activity:activity-ktx:1.1.0"
 
     //Dagger - Hilt
-    implementation "com.google.dagger:hilt-android:2.28-alpha"
-    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
-    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha02"
+//    implementation "com.google.dagger:hilt-android:2.28-alpha"
+//    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
+//    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha02"
+
+    //Koin
+    // Koin Core features
+    implementation "io.insert-koin:koin-core:$koin_version"
+// Koin Test features
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    // Koin main features for Android
+    implementation "io.insert-koin:koin-android:$koin_version"
+// No more koin-android-viewmodel, koin-android-scope, koin-android-fragment
+
+// Java Compatibility
+    implementation "io.insert-koin:koin-android-compat:$koin_version"
+// Jetpack WorkManager
+    implementation "io.insert-koin:koin-androidx-workmanager:$koin_version"
+// Navigation Graph
+    implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
 
     // Timber
     implementation 'com.jakewharton.timber:timber:4.7.1'

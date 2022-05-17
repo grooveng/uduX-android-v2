@@ -8,9 +8,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import ng.groove.mediaplayer.R
-import javax.inject.Inject
 
-class SongAdapter @Inject constructor(
+class SongAdapter constructor(
     private val glide: RequestManager
 ) : BaseSongAdapter(R.layout.mini_player) {
 
