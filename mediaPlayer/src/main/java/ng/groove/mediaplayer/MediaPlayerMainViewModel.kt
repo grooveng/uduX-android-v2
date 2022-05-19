@@ -16,7 +16,6 @@ import ng.groove.mediaplayer.exoplayer.isPlayEnabled
 import ng.groove.mediaplayer.exoplayer.isPlaying
 import ng.groove.mediaplayer.exoplayer.isPrepared
 import ng.groove.mediaplayer.utils.Resource
-import org.koin.java.KoinJavaComponent.inject
 
 class MediaPlayerMainViewModel  constructor(
     private val musicServiceConnection: MusicServiceConnection

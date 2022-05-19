@@ -24,8 +24,6 @@ import ng.groove.mediaplayer.exoplayer.callbacks.MusicPlaybackPreparer
 import ng.groove.mediaplayer.exoplayer.callbacks.MusicPlayerEventListener
 import ng.groove.mediaplayer.exoplayer.callbacks.MusicPlayerNotificationListener
 import ng.groove.mediaplayer.utils.InjectorUtils
-import org.koin.android.ext.android.inject
-import org.koin.core.context.GlobalContext.get
 
 
 private const val SERVICE_TAG = "MusicService"

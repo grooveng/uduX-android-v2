@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import ng.groove.mediaplayer.data.entities.Song
-import ng.groove.mediaplayer.databinding.FragmentFirstBinding
+import ng.groove.mediaplayer.databinding.FragmentMediaPlayerBinding
 import ng.groove.mediaplayer.exoplayer.isPlaying
 import ng.groove.mediaplayer.exoplayer.toSong
 import ng.groove.mediaplayer.utils.InjectorUtils
@@ -29,7 +29,7 @@ import java.util.*
  */
 class MediaPlayerFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentMediaPlayerBinding? = null
     private val binding get() = _binding!!
 //    @Inject
 //    lateinit var glide: RequestManager
@@ -54,7 +54,7 @@ class MediaPlayerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentMediaPlayerBinding.inflate(inflater, container, false)
         return binding.root
 
     }
