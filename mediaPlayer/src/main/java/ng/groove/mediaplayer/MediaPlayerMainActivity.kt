@@ -21,7 +21,6 @@ import ng.groove.mediaplayer.exoplayer.isPlaying
 import ng.groove.mediaplayer.exoplayer.toSong
 import ng.groove.mediaplayer.utils.InjectorUtils
 import ng.groove.mediaplayer.utils.Status
-import org.koin.android.ext.android.inject
 
 
 class MediaPlayerMainActivity : AppCompatActivity() {
