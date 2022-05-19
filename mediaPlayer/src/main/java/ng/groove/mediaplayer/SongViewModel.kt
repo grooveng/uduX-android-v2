@@ -1,9 +1,11 @@
 package ng.groove.mediaplayer
 
 
+import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -38,6 +40,15 @@ class SongViewModel  constructor(
                 }
                 delay(UPDATE_PLAYER_POSITION_INTERVAL)
             }
+        }
+    }
+    class Factory(
+        private val musicServiceConnection: MusicServiceConnection
+    ) : ViewModelProvider.NewInstanceFactory() {
+
+        @Suppress("unchecked_cast")
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return SongViewModel( musicServiceConnection) as T
         }
     }
 }

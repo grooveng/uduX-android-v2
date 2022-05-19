@@ -19,16 +19,19 @@ import ng.groove.mediaplayer.data.entities.Song
 import ng.groove.mediaplayer.databinding.ActivityMainBinding
 import ng.groove.mediaplayer.exoplayer.isPlaying
 import ng.groove.mediaplayer.exoplayer.toSong
+import ng.groove.mediaplayer.utils.InjectorUtils
 import ng.groove.mediaplayer.utils.Status
 import org.koin.android.ext.android.inject
 
 
 class MediaPlayerMainActivity : AppCompatActivity() {
 
-    private val mainViewModel: MediaPlayerMainViewModel by viewModels()
+    private val mainViewModel: MediaPlayerMainViewModel by viewModels<MediaPlayerMainViewModel> {
+        InjectorUtils.provideMainActivityViewModel(this)
+    }
 
 
-     val swipeSongAdapter: SwipeSongAdapter by inject()
+     val swipeSongAdapter: SwipeSongAdapter = SwipeSongAdapter()
 
 
     //lateinit var glide: RequestManager

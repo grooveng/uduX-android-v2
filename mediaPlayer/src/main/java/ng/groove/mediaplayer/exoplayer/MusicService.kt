@@ -1,5 +1,6 @@
 package ng.groove.mediaplayer.exoplayer
 
+import android.content.Context
 import android.app.PendingIntent
 import android.content.Intent
 import android.os.Bundle
@@ -12,14 +13,17 @@ import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.ext.mediasession.TimelineQueueNavigator
+import com.google.android.exoplayer2.source.ConcatenatingMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import kotlinx.coroutines.*
 import ng.groove.mediaplayer.Constants.MEDIA_ROOT_ID
 import ng.groove.mediaplayer.Constants.NETWORK_ERROR
+import ng.groove.mediaplayer.data.remote.MusicDatabase
 import ng.groove.mediaplayer.exoplayer.callbacks.MusicPlaybackPreparer
 import ng.groove.mediaplayer.exoplayer.callbacks.MusicPlayerEventListener
 import ng.groove.mediaplayer.exoplayer.callbacks.MusicPlayerNotificationListener
+import ng.groove.mediaplayer.utils.InjectorUtils
 import org.koin.android.ext.android.inject
 import org.koin.core.context.GlobalContext.get
 
@@ -30,16 +34,15 @@ private const val SERVICE_TAG = "MusicService"
 class MusicService : MediaBrowserServiceCompat() {
 
 
-    val dataSourceFactory: DefaultDataSourceFactory = DefaultDataSourceFactory(applicationContext, Util.getUserAgent(applicationContext, "UdX"))
 
 
 
-     val exoPlayer: SimpleExoPlayer = SimpleExoPlayer.Builder(applicationContext).build().apply {
+     val exoPlayer: SimpleExoPlayer = SimpleExoPlayer.Builder(InjectorUtils.provideContext()).build().apply {
         setAudioAttributes(audioAttributes, true)
         setHandleAudioBecomingNoisy(true)}
 
 
-     val musicSource: MusicSource by inject()
+     val musicSource: MusicSource = MusicSource(MusicDatabase())
 
     private lateinit var musicNotificationManager: MusicNotificationManager
 
@@ -119,6 +122,9 @@ class MusicService : MediaBrowserServiceCompat() {
     ) {
         val myScope = CoroutineScope(Dispatchers.Main)
         myScope.launch(Dispatchers.Main){
+            val dataSourceFactory: DefaultDataSourceFactory = DefaultDataSourceFactory(InjectorUtils.provideContext(), Util.getUserAgent(InjectorUtils.provideContext(), "UdX"))
+            val concatenatingMediaSource = ConcatenatingMediaSource()
+
             val curSongIndex = if(curPlayingSong == null) 0 else songs.indexOf(itemToPlay)
             exoPlayer.prepare(musicSource.asMediaSource(dataSourceFactory))
             exoPlayer.seekTo(curSongIndex, 0L)

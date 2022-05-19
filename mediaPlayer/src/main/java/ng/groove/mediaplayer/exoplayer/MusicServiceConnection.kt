@@ -15,7 +15,7 @@ import ng.groove.mediaplayer.utils.Event
 import ng.groove.mediaplayer.utils.Resource
 
 class MusicServiceConnection(
-    context: Context
+    context: Context, serviceComponent: ComponentName
 ) {
     private val _isConnected = MutableLiveData<Event<Resource<Boolean>>>()
     val isConnected: LiveData<Event<Resource<Boolean>>> = _isConnected
@@ -110,5 +110,16 @@ class MusicServiceConnection(
         override fun onSessionDestroyed() {
             mediaBrowserConnectionCallback.onConnectionSuspended()
         }
+    }
+    companion object {
+        // For Singleton instantiation.
+        @Volatile
+        private var instance: MusicServiceConnection? = null
+
+        fun getInstance(context: Context, serviceComponent: ComponentName) =
+            instance ?: synchronized(this) {
+                instance ?: MusicServiceConnection(context, serviceComponent)
+                    .also { instance = it }
+            }
     }
 }
