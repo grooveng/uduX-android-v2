@@ -3,7 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="Authentication/src/main/res/layout/fragment_first.xml" value="0.165" />
+        <entry key="Authentication/src/main/res/drawable/background.xml" value="0.1" />
+        <entry key="Authentication/src/main/res/drawable/background_faces.xml" value="0.1995" />
+        <entry key="Authentication/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="Authentication/src/main/res/drawable/ic_repeat.xml" value="0.1" />
+        <entry key="Authentication/src/main/res/drawable/layout_rectangular_border.xml" value="0.1995" />
+        <entry key="Authentication/src/main/res/drawable/yellow_hollow_rectangular.xml" value="0.1995" />
+        <entry key="Authentication/src/main/res/layout/activity_authentication.xml" value="0.25" />
+        <entry key="Authentication/src/main/res/layout/fragment_first.xml" value="0.25" />
+        <entry key="Authentication/src/main/res/layout/fragment_second.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19610507246376813" />
         <entry key="mediaplayer/src/main/res/drawable/brown_outline.xml" value="0.2085" />
         <entry key="mediaplayer/src/main/res/drawable/brown_outline_with_corners.xml" value="0.193" />
