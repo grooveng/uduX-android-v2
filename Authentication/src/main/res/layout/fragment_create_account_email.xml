@@ -8,7 +8,7 @@
     android:background="@drawable/background_image"
     android:backgroundTint="#000000"
     android:backgroundTintMode="add"
-    tools:context=".FirstFragment"
+    tools:context=".CreateAccountEmailFragment"
     >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

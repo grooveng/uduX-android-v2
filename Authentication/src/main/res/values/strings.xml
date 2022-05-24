@@ -10,4 +10,8 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="please">Please  <u>Login to Continue</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="you_ll_need_a_password">You’ll need a /n Password</string>
+    <string name="by_creating_an_account_you_agree_to_udux_s_terms_and_conditions_of_use">By creating an account, you agree to uduX’s Terms and Conditions of Use</string>
 </resources>
