@@ -1,7 +1,7 @@
 # Media player Architecture overview
 
 Mediaplayer follows the client/server architecture as [described in the "how to build an audio app" official documentation](https://developer.android.com/guide/topics/media-apps/audio-app/building-an-audio-app).
-
+NOTE: A large part of this documentation was adapted from UAMP
 Here's an architectural overview:
 
 ![Architecture overview diagram](images/3-architecture-overview.png "Architecture overview")
@@ -76,22 +76,22 @@ The user interface allows users to:
 *   see changes in the underlying player, such as playback duration
 *   view metadata about the currently playing song including album art, title and artist
 
-UAMP achieves this by using a Model-View-ViewModel architecture. This allows a separation of responsibilities between each layer. 
+ by using a Model-View-ViewModel architecture. This allows a separation of responsibilities between each layer.
 
-![Class diagram showing UAMP's Model-View-ViewModel architecture](images/9-mvvm.png "Class diagram showing UAMP's Model-View-ViewModel architecture")
+![Class diagram showing Model-View-ViewModel architecture](images/9-mvvm.png "Class diagram showing UAMP's Model-View-ViewModel architecture")
 
-Diagram: Class diagram showing UAMP's Model-View-ViewModel architecture
-
+Diagram: Class diagram showing Model-View-ViewModel architecture
 
 ## Views
 
-UAMP has three main view classes - one [Activity](https://developer.android.com/reference/android/app/Activity) and two [Fragments](https://developer.android.com/guide/components/fragments?hl=en): 
 
 *   **MediaPlayerActivity** is responsible for swapping between the different fragments.
 *   **MediaPlayerFragment** shows the song that is currently playing.is for browsing the music catalog. It displays a list of media items which can be either albums or songs. Tapping an album will display a new MediaItemFragment containing the songs within that album. Tapping a song will start playing that song and display the NowPlayingFragment.
 *   **SortDialogFragment** shows the sort options for songs in a playlist
 *   **MediaPlayerMoreFragment** is for exploring other functions to a track which can be either albums or songs.
 *   **AddToPlaylistFragment** shows the song that is currently playing.
+
+
 All fragments in this module  are displayed by the MediaPlayerMainActivity
 
 ## ViewModels
