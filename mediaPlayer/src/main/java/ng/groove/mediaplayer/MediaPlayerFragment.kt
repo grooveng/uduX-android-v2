@@ -24,15 +24,11 @@ import java.lang.System.load
 import java.text.SimpleDateFormat
 import java.util.*
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
+
 class MediaPlayerFragment : Fragment() {
 
     private var _binding: FragmentMediaPlayerBinding? = null
     private val binding get() = _binding!!
-//    @Inject
-//    lateinit var glide: RequestManager
 
     private val mainViewModel by activityViewModels<MediaPlayerMainViewModel> {
         InjectorUtils.provideMainActivityViewModel(requireContext())
@@ -40,12 +36,8 @@ class MediaPlayerFragment : Fragment() {
     private val songViewModel by viewModels<SongViewModel> {
         InjectorUtils.provideSongViewModel(requireContext())
     }
-
-
     private var curPlayingSong: Song? = null
-
     private var playbackState: PlaybackStateCompat? = null
-
     private var shouldUpdateSeekbar = true
 
 
@@ -61,11 +53,7 @@ class MediaPlayerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-//        mainViewModel = ViewModelProvider(requireActivity()).get(MediaPlayerMainViewModel::class.java)
         subscribeToObservers()
-
         binding.addButton.setOnClickListener {
             (activity as MediaPlayerMainActivity).addFragment(AddToPlaylistFragment(), null)
         }

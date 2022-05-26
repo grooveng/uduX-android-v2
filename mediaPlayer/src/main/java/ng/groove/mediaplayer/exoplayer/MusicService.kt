@@ -31,31 +31,18 @@ private const val SERVICE_TAG = "MusicService"
 
 class MusicService : MediaBrowserServiceCompat() {
 
-
-
-
-
      val exoPlayer: SimpleExoPlayer = SimpleExoPlayer.Builder(InjectorUtils.provideContext()).build().apply {
         setAudioAttributes(audioAttributes, true)
         setHandleAudioBecomingNoisy(true)}
-
-
-     val musicSource: MusicSource = MusicSource(MusicDatabase())
-
+    val musicSource: MusicSource = MusicSource(MusicDatabase())
     private lateinit var musicNotificationManager: MusicNotificationManager
-
     private val serviceJob = Job()
     private val serviceScope = CoroutineScope(Dispatchers.Main + serviceJob)
-
     private lateinit var mediaSession: MediaSessionCompat
     private lateinit var mediaSessionConnector: MediaSessionConnector
-
     var isForegroundService = false
-
     private var curPlayingSong: MediaMetadataCompat? = null
-
     private var isPlayerInitialized = false
-
     private lateinit var musicPlayerEventListener: MusicPlayerEventListener
 
     companion object {
@@ -79,7 +66,6 @@ class MusicService : MediaBrowserServiceCompat() {
         }
 
         sessionToken = mediaSession.sessionToken
-
         musicNotificationManager = MusicNotificationManager(
             this,
             mediaSession.sessionToken,
@@ -96,7 +82,6 @@ class MusicService : MediaBrowserServiceCompat() {
                 true
             )
         }
-
         mediaSessionConnector = MediaSessionConnector(mediaSession)
         mediaSessionConnector.setPlaybackPreparer(musicPlaybackPreparer)
         mediaSessionConnector.setQueueNavigator(MusicQueueNavigator())
@@ -121,7 +106,6 @@ class MusicService : MediaBrowserServiceCompat() {
         val myScope = CoroutineScope(Dispatchers.Main)
         myScope.launch(Dispatchers.Main){
             val dataSourceFactory: DefaultDataSourceFactory = DefaultDataSourceFactory(InjectorUtils.provideContext(), Util.getUserAgent(InjectorUtils.provideContext(), "UdX"))
-            val concatenatingMediaSource = ConcatenatingMediaSource()
 
             val curSongIndex = if(curPlayingSong == null) 0 else songs.indexOf(itemToPlay)
             exoPlayer.prepare(musicSource.asMediaSource(dataSourceFactory))
@@ -138,7 +122,6 @@ class MusicService : MediaBrowserServiceCompat() {
     override fun onDestroy() {
         super.onDestroy()
         serviceScope.cancel()
-
         exoPlayer.removeListener(musicPlayerEventListener)
         exoPlayer.release()
     }

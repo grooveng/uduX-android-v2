@@ -1,7 +1,6 @@
 package ng.groove.mediaplayer
 
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,10 +18,8 @@ class SongViewModel  constructor(
 ) : ViewModel() {
 
     private val playbackState = musicServiceConnection.playbackState
-
     private val _curSongDuration = MutableLiveData<Long>()
     val curSongDuration: LiveData<Long> = _curSongDuration
-
     private val _curPlayerPosition = MutableLiveData<Long>()
     val curPlayerPosition: LiveData<Long> = _curPlayerPosition
 

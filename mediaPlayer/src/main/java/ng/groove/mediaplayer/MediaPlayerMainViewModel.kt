@@ -24,7 +24,6 @@ class MediaPlayerMainViewModel  constructor(
     private val _mediaItems = MutableLiveData<Resource<List<Song>>>()
     val mediaItems: LiveData<Resource<List<Song>>> = _mediaItems
 
-
     val isConnected = musicServiceConnection.isConnected
     val networkError = musicServiceConnection.networkError
     val curPlayingSong = musicServiceConnection.curPlayingSong

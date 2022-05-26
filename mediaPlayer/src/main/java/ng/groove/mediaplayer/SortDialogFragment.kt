@@ -17,13 +17,10 @@ class SortDialogFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        // Inflate the layout for this fragment
         _binding = FragmentSortDialogBinding.inflate(inflater, container, false)
         binding.cancelTextView.setOnClickListener {
             (activity as MediaPlayerMainActivity).removeFragment(

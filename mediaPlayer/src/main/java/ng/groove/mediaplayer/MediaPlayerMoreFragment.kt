@@ -12,11 +12,7 @@ import ng.groove.mediaplayer.databinding.FragmentMediaPlayerMoreBinding
 
 class MediaPlayerMoreFragment : Fragment() {
 
-
-
     private var _binding: FragmentMediaPlayerMoreBinding? = null
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +51,6 @@ class MediaPlayerMoreFragment : Fragment() {
                     )
                 }
             })
-
         return binding.root
     }
 

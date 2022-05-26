@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-
+// Dummy adapter class to show list of playlists
 class PlaylistItemAdapter(context: Context,) :
     RecyclerView.Adapter<PlaylistItemAdapter.ViewHolder>() {
     private val mLayoutInflater: LayoutInflater = LayoutInflater.from(context)
@@ -18,7 +18,6 @@ class PlaylistItemAdapter(context: Context,) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-
     }
 
     override fun getItemCount(): Int {
@@ -27,6 +26,5 @@ class PlaylistItemAdapter(context: Context,) :
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
-
 
 }
