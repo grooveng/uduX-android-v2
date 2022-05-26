@@ -3,7 +3,6 @@ UduX Android V2
 
 ## General Information
 - Clean Udux project for build on new pc.
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
 
 
 ## Technologies Used
@@ -20,9 +19,9 @@ UduX Android V2
 
 ## PROJECT AND MODULE LEVEL DOCUMENTATIONS
 This project uses different modules which are split primarily by features.
-PRIMARY MODULE is the default app module. It only carries the previous splashscreen page.
-The Authentication module is a standalone feature that can be run individually as an app it. This module contains everything that has to do with authentication(all forms of registration and login in)
-The mediaplayer module similarly is also a standalone feature module that contains everything involved in playing music. For more info check the full guide for the mediaplayer module [full guide](docs/FullGuide.md)
+- PRIMARY MODULE is the default app module. It only carries the previous splashscreen page.
+- The Authentication module is a standalone feature that can be run individually as an app it. This module contains everything that has to do with authentication(all forms of registration and login in)
+- The mediaplayer module similarly is also a standalone feature module that contains everything involved in playing music. For more info check the full guide for the mediaplayer module [full guide](docs/FullGuide.md)
 
 ## Project Status
 Project is:  _currently being worked on_.
@@ -31,5 +30,4 @@ Project is:  _currently being worked on_.
 
 
 ## Room for Improvement
-Some of the IOS libraries are not working the firebase, these involves the FirebaseAuth, Please kindly into it that.
-
+Optimize gradle dependencies for all modules to make it easier to maintain
