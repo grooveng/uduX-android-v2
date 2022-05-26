@@ -1,41 +1,5 @@
 UduX Android V2
 =====================================
-The goal of this sample is to show how to implement an audio media app that works
-across multiple form factors and provides a consistent user experience
-on Android phones, tablets, Android Auto, Android Wear, Android TV, Google Cast devices,
-and with the Google Assistant. 
-
-To get started with UAMP please read the [full guide](docs/FullGuide.md).
-
-![Screenshot showing UAMP's UI for browsing albums and songs](docs/images/1-browse-albums-screenshot.png "Browse albums screenshot")
-![Screenshot showing UAMP's UI for playing a song](docs/images/2-play-song-screenshot.png "Play song screenshot")
-
-Pre-requisites
---------------
-
-- Android Studio 3.x
-
-Getting Started
----------------
-
-This sample uses the Gradle build system. To build this project, use the
-"gradlew build" command or use "Import Project" in Android Studio.
-
-Support
--------
-
-- Check out the [FAQs page](docs/FAQs.md)
-- Stack Overflow: http://stackoverflow.com/questions/tagged/android
-> Setup process for building Udux to access its KMM module for IOS implementation.
-
-## Table of Contents
-* [General Info](#general-information)
-* [Technologies Used](#technologies-used)
-* [Setup](#setup)
-* [Usage](#usage)
-* [Project Status](#project-status)
-<!-- * [License](#license) -->
-
 
 ## General Information
 - Clean Udux project for build on new pc.

@@ -1,5 +1,3 @@
-# Full Guide to UAMP
-
 # Media player Architecture overview
 
 Mediaplayer follows the client/server architecture as [described in the "how to build an audio app" official documentation](https://developer.android.com/guide/topics/media-apps/audio-app/building-an-audio-app).
@@ -50,13 +48,9 @@ Mediaplayer uses two MediaControllers. One on the client side to communicate wit
 
 ## Notifying the user
 
-![Screenshot of notification showing information about the current song being played and playback controls](images/6-notification.png "Notification showing information about the current song being played and playback controls")
-
-Screenshot: Notification showing information about the current song being played and playback controls
-
 A [notification](https://developer.android.com/guide/topics/ui/notifiers/notifications.html) allows users to see the song being played and to control playback. It's also a mandatory requirement for a [foreground service](https://developer.android.com/guide/components/services#Foreground) and stops MusicService from being killed. 
 
-UAMP delegates the display and update of its notification to [`PlayerNotificationManager`](https://exoplayer.dev/doc/reference/index.html?com/google/android/exoplayer2/ui/PlayerNotificationManager.html) provided by ExoPlayer. 
+The project delegates the display and update of its notification to [`PlayerNotificationManager`](https://exoplayer.dev/doc/reference/index.html?com/google/android/exoplayer2/ui/PlayerNotificationManager.html) provided by ExoPlayer.
 
 ## Playing audio
 
@@ -71,7 +65,7 @@ Its key responsibilities are:
 
 
 
-*   Preparing media sources from URIs using UampPlaybackPreparer
+*   Preparing media sources from URIs using PlaybackPreparer
 *   Sending playback state updates from ExoPlayer to the media session
 *   Forwarding actions from the media session, such as play, pause and skip, to ExoPlayer
 
