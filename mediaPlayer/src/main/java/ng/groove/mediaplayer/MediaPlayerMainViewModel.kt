@@ -1,12 +1,14 @@
 package ng.groove.mediaplayer
 
+import android.app.Application
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.MediaMetadataCompat.METADATA_KEY_MEDIA_ID
 import android.util.Log
-import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import ng.groove.mediaplayer.Constants.MEDIA_ROOT_ID
 import ng.groove.mediaplayer.data.entities.Song
 import ng.groove.mediaplayer.exoplayer.MusicServiceConnection
@@ -15,9 +17,10 @@ import ng.groove.mediaplayer.exoplayer.isPlaying
 import ng.groove.mediaplayer.exoplayer.isPrepared
 import ng.groove.mediaplayer.utils.Resource
 
-class MediaPlayerMainViewModel @ViewModelInject public constructor(
+class MediaPlayerMainViewModel  constructor(
     private val musicServiceConnection: MusicServiceConnection
 ) : ViewModel() {
+
     private val _mediaItems = MutableLiveData<Resource<List<Song>>>()
     val mediaItems: LiveData<Resource<List<Song>>> = _mediaItems
 
@@ -79,5 +82,14 @@ class MediaPlayerMainViewModel @ViewModelInject public constructor(
     override fun onCleared() {
         super.onCleared()
         musicServiceConnection.unsubscribe(MEDIA_ROOT_ID, object : MediaBrowserCompat.SubscriptionCallback() {})
+    }
+    class Factory(
+        private val musicServiceConnection: MusicServiceConnection
+    ) : ViewModelProvider.NewInstanceFactory() {
+
+        @Suppress("unchecked_cast")
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return MediaPlayerMainViewModel(musicServiceConnection) as T
+        }
     }
 }

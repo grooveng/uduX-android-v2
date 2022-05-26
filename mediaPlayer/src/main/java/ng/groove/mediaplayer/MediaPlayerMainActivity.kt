@@ -14,32 +14,23 @@ import androidx.navigation.ui.navigateUp
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.RequestManager
 import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
 import ng.groove.mediaplayer.adapters.SwipeSongAdapter
 import ng.groove.mediaplayer.data.entities.Song
 import ng.groove.mediaplayer.databinding.ActivityMainBinding
 import ng.groove.mediaplayer.exoplayer.isPlaying
 import ng.groove.mediaplayer.exoplayer.toSong
+import ng.groove.mediaplayer.utils.InjectorUtils
 import ng.groove.mediaplayer.utils.Status
-import javax.inject.Inject
 
-@AndroidEntryPoint
+
 class MediaPlayerMainActivity : AppCompatActivity() {
 
-    private val mainViewModel: MediaPlayerMainViewModel by viewModels()
-
-    @Inject
-    lateinit var swipeSongAdapter: SwipeSongAdapter
-
-    @Inject
-    lateinit var glide: RequestManager
-
+    private val mainViewModel: MediaPlayerMainViewModel by viewModels<MediaPlayerMainViewModel> {
+        InjectorUtils.provideMainActivityViewModel(this)
+    }
+    val swipeSongAdapter: SwipeSongAdapter = SwipeSongAdapter()
     private var curPlayingSong: Song? = null
-
     private var playbackState: PlaybackStateCompat? = null
-
-
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,9 +39,7 @@ class MediaPlayerMainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         subscribeToObservers()
-
         binding.vpSong.adapter = swipeSongAdapter
-
         binding.vpSong.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -74,11 +63,6 @@ class MediaPlayerMainActivity : AppCompatActivity() {
 //                R.id.globalActionToSongFragment
 //            )
 //        }
-
-
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -86,17 +70,7 @@ class MediaPlayerMainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
+//fragment manager was used in place of nav graphs to achieve transparent overlay effect
     fun addFragment(fragment: Fragment, bundle: Bundle?) {
         val fragmentManager: FragmentManager =
             this@MediaPlayerMainActivity.supportFragmentManager
@@ -112,16 +86,9 @@ class MediaPlayerMainActivity : AppCompatActivity() {
         supportFragmentManager.apply {
             beginTransaction().remove(fragment).commit()
             popBackStack()
-        //clear all items added to backstack//  popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        }
+         }
     }
 
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
-    }
     private fun switchViewPagerToCurrentSong(song: Song) {
         val newItemIndex = swipeSongAdapter.songs.indexOf(song)
         if (newItemIndex != -1) {

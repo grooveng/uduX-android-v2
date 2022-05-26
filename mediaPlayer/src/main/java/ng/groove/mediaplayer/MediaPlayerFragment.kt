@@ -9,35 +9,35 @@ import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import ng.groove.mediaplayer.data.entities.Song
-import ng.groove.mediaplayer.databinding.FragmentFirstBinding
+import ng.groove.mediaplayer.databinding.FragmentMediaPlayerBinding
 import ng.groove.mediaplayer.exoplayer.isPlaying
 import ng.groove.mediaplayer.exoplayer.toSong
+import ng.groove.mediaplayer.utils.InjectorUtils
 import ng.groove.mediaplayer.utils.Status
+import java.lang.System.load
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.inject.Inject
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
+
 class MediaPlayerFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentMediaPlayerBinding? = null
     private val binding get() = _binding!!
-    @Inject
-    lateinit var glide: RequestManager
 
-    private lateinit var mainViewModel: MediaPlayerMainViewModel
-    private val songViewModel: SongViewModel by viewModels()
-
+    private val mainViewModel by activityViewModels<MediaPlayerMainViewModel> {
+        InjectorUtils.provideMainActivityViewModel(requireContext())
+    }
+    private val songViewModel by viewModels<SongViewModel> {
+        InjectorUtils.provideSongViewModel(requireContext())
+    }
     private var curPlayingSong: Song? = null
-
     private var playbackState: PlaybackStateCompat? = null
-
     private var shouldUpdateSeekbar = true
 
 
@@ -46,20 +46,14 @@ class MediaPlayerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentMediaPlayerBinding.inflate(inflater, container, false)
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        mainViewModel = ViewModelProvider(requireActivity()).get(MediaPlayerMainViewModel::class.java)
         subscribeToObservers()
-
-
-
         binding.addButton.setOnClickListener {
             (activity as MediaPlayerMainActivity).addFragment(AddToPlaylistFragment(), null)
         }
@@ -105,9 +99,9 @@ class MediaPlayerFragment : Fragment() {
         _binding = null
     }
     private fun updateTitleAndSongImage(song: Song) {
-        val title = "${song.title} - ${song.subtitle}"
-        binding.textViewTrackTitle.text = title
-        glide.load(song.imageUrl).into(binding.imageViewTrackCover)
+        binding.textViewTrackTitle.text = song.title
+        binding.textViewArtist.text = song.subtitle
+        Glide.with(requireContext()).load(song.imageUrl).into(binding.imageViewTrackCover)
     }
 
     private fun subscribeToObservers() {
@@ -147,7 +141,9 @@ class MediaPlayerFragment : Fragment() {
         songViewModel.curSongDuration.observe(viewLifecycleOwner) {
             binding.seekBarPlayback.max = it.toInt()
             val dateFormat = SimpleDateFormat("mm:ss", Locale.getDefault())
-            binding.textViewCurrentTime.text = dateFormat.format(it)
+            val duration: String = dateFormat.format(it).toString()
+            binding.textViewDuration.text = duration
+
         }
     }
 

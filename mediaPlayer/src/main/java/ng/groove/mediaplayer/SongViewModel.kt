@@ -1,9 +1,10 @@
 package ng.groove.mediaplayer
 
-import androidx.hilt.lifecycle.ViewModelInject
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -12,15 +13,13 @@ import ng.groove.mediaplayer.exoplayer.MusicService
 import ng.groove.mediaplayer.exoplayer.MusicServiceConnection
 import ng.groove.mediaplayer.exoplayer.currentPlaybackPosition
 
-class SongViewModel @ViewModelInject constructor(
+class SongViewModel  constructor(
     musicServiceConnection: MusicServiceConnection
 ) : ViewModel() {
 
     private val playbackState = musicServiceConnection.playbackState
-
     private val _curSongDuration = MutableLiveData<Long>()
     val curSongDuration: LiveData<Long> = _curSongDuration
-
     private val _curPlayerPosition = MutableLiveData<Long>()
     val curPlayerPosition: LiveData<Long> = _curPlayerPosition
 
@@ -38,6 +37,15 @@ class SongViewModel @ViewModelInject constructor(
                 }
                 delay(UPDATE_PLAYER_POSITION_INTERVAL)
             }
+        }
+    }
+    class Factory(
+        private val musicServiceConnection: MusicServiceConnection
+    ) : ViewModelProvider.NewInstanceFactory() {
+
+        @Suppress("unchecked_cast")
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return SongViewModel( musicServiceConnection) as T
         }
     }
 }

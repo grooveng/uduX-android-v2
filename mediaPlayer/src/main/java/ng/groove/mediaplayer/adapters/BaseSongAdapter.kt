@@ -16,8 +16,8 @@ abstract class BaseSongAdapter(
 ) : RecyclerView.Adapter<BaseSongAdapter.SongViewHolder>() {
 //add data binding to module so Baseadapter can be dynamic
     class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        var textViewTitle: TextView = itemView.findViewById(R.id.textViewTitle)
-   var textViewArtist: TextView = itemView.findViewById(R.id.textViewTitle)
+        var textViewTitle: TextView = itemView.findViewById(R.id.textViewTrackTitle)
+   var textViewArtist: TextView = itemView.findViewById(R.id.textViewArtist)
     var imageViewTrackCover: ImageView = itemView.findViewById(R.id.imageViewTrackCover)
     }
 
@@ -38,12 +38,15 @@ abstract class BaseSongAdapter(
         set(value) = differ.submitList(value)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
+        val view: View = LayoutInflater.from(parent.context).inflate(
+            layoutId,
+            parent,
+            false
+        )
+        view.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+
         return SongViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                layoutId,
-                parent,
-                false
-            )
+            view
         )
     }
 

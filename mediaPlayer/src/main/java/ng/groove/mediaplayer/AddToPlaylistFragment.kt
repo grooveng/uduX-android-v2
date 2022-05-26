@@ -9,14 +9,14 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import ng.groove.mediaplayer.databinding.FragmentSecondBinding
+import ng.groove.mediaplayer.databinding.FragmentAddToPlaylistBinding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class AddToPlaylistFragment : BottomSheetDialogFragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentAddToPlaylistBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -26,11 +26,8 @@ class AddToPlaylistFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//        val dialog = dialog as BottomSheetDialog
-//        dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
-//        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.RED))
         container?.rootView?.setBackgroundColor(Color.TRANSPARENT)
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentAddToPlaylistBinding.inflate(inflater, container, false)
 
         val recyclerItems = binding.recyclerViewPlaylistItems
         val recyclerAdapter = PlaylistItemAdapter(requireContext())

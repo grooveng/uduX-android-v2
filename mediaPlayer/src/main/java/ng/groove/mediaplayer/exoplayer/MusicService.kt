@@ -1,5 +1,6 @@
 package ng.groove.mediaplayer.exoplayer
 
+import android.content.Context
 import android.app.PendingIntent
 import android.content.Intent
 import android.os.Bundle
@@ -12,44 +13,36 @@ import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.ext.mediasession.TimelineQueueNavigator
+import com.google.android.exoplayer2.source.ConcatenatingMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import dagger.hilt.android.AndroidEntryPoint
+import com.google.android.exoplayer2.util.Util
 import kotlinx.coroutines.*
 import ng.groove.mediaplayer.Constants.MEDIA_ROOT_ID
 import ng.groove.mediaplayer.Constants.NETWORK_ERROR
+import ng.groove.mediaplayer.data.remote.MusicDatabase
 import ng.groove.mediaplayer.exoplayer.callbacks.MusicPlaybackPreparer
 import ng.groove.mediaplayer.exoplayer.callbacks.MusicPlayerEventListener
 import ng.groove.mediaplayer.exoplayer.callbacks.MusicPlayerNotificationListener
-import javax.inject.Inject
+import ng.groove.mediaplayer.utils.InjectorUtils
+
 
 private const val SERVICE_TAG = "MusicService"
 
-@AndroidEntryPoint
+
 class MusicService : MediaBrowserServiceCompat() {
 
-    @Inject
-    lateinit var dataSourceFactory: DefaultDataSourceFactory
-
-    @Inject
-    lateinit var exoPlayer: SimpleExoPlayer
-
-    @Inject
-    lateinit var musicSource: MusicSource
-
+     val exoPlayer: SimpleExoPlayer = SimpleExoPlayer.Builder(InjectorUtils.provideContext()).build().apply {
+        setAudioAttributes(audioAttributes, true)
+        setHandleAudioBecomingNoisy(true)}
+    val musicSource: MusicSource = MusicSource(MusicDatabase())
     private lateinit var musicNotificationManager: MusicNotificationManager
-
     private val serviceJob = Job()
     private val serviceScope = CoroutineScope(Dispatchers.Main + serviceJob)
-
     private lateinit var mediaSession: MediaSessionCompat
     private lateinit var mediaSessionConnector: MediaSessionConnector
-
     var isForegroundService = false
-
     private var curPlayingSong: MediaMetadataCompat? = null
-
     private var isPlayerInitialized = false
-
     private lateinit var musicPlayerEventListener: MusicPlayerEventListener
 
     companion object {
@@ -73,7 +66,6 @@ class MusicService : MediaBrowserServiceCompat() {
         }
 
         sessionToken = mediaSession.sessionToken
-
         musicNotificationManager = MusicNotificationManager(
             this,
             mediaSession.sessionToken,
@@ -90,7 +82,6 @@ class MusicService : MediaBrowserServiceCompat() {
                 true
             )
         }
-
         mediaSessionConnector = MediaSessionConnector(mediaSession)
         mediaSessionConnector.setPlaybackPreparer(musicPlaybackPreparer)
         mediaSessionConnector.setQueueNavigator(MusicQueueNavigator())
@@ -114,6 +105,8 @@ class MusicService : MediaBrowserServiceCompat() {
     ) {
         val myScope = CoroutineScope(Dispatchers.Main)
         myScope.launch(Dispatchers.Main){
+            val dataSourceFactory: DefaultDataSourceFactory = DefaultDataSourceFactory(InjectorUtils.provideContext(), Util.getUserAgent(InjectorUtils.provideContext(), "UdX"))
+
             val curSongIndex = if(curPlayingSong == null) 0 else songs.indexOf(itemToPlay)
             exoPlayer.prepare(musicSource.asMediaSource(dataSourceFactory))
             exoPlayer.seekTo(curSongIndex, 0L)
@@ -129,7 +122,6 @@ class MusicService : MediaBrowserServiceCompat() {
     override fun onDestroy() {
         super.onDestroy()
         serviceScope.cancel()
-
         exoPlayer.removeListener(musicPlayerEventListener)
         exoPlayer.release()
     }
